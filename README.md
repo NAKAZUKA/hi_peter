@@ -46,4 +46,4 @@ Here are some screenshots of our application:
 
 ![Screenshot 1](ANIMATIC/datas/for_git/petr.png)
 ![Screenshot 2](ANIMATIC/datas/for_git/main.png)
-![Screenshot 2](ANIMATIC/datas/for_git/image.png.png)
+![Screenshot 2](ANIMATIC/datas/for_git/image.png)
