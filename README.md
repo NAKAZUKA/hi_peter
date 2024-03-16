@@ -1,4 +1,4 @@
-# hi_peter# SpecTra1te Voice Assistant Project
+# hi_peter SpecTra1te Voice Assistant Project
 
 Welcome to SpecTra1te! We're excited to introduce our project: a voice assistant named Peter. Peter can help you summon a taxi, provide currency exchange rates, assist in getting a local SIM card, and answer any questions you may have.
 
