@@ -44,6 +44,6 @@ The executable code can be found in the `Vosk.py` file. After running it, you'll
 
 Here are some screenshots of our application:
 
-![Screenshot 1](ANIMATIC/dates/for_git/petr.png)
-![Screenshot 2](ANIMATIC/dates/for_git/main.png)
-![Screenshot 2](ANIMATIC/dates/for_git/abroad_taxi.png.png)
+![Screenshot 1](ANIMATIC/datas/for_git/petr.png)
+![Screenshot 2](ANIMATIC/datas/for_git/main.png)
+![Screenshot 2](ANIMATIC/datas/for_git/image.png.png)
