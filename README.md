@@ -34,7 +34,7 @@ To get started with our project, follow these steps:
     pip install -r requirements.txt
     ```
 
-   Ensure that you have Python version 3.9 or higher installed to work with this project.
+   Make sure that you have Python version 3.9 installed to work with this project.
 
 ## Running the Application
 
