@@ -6,7 +6,7 @@ import Audio
 # from Vosk_trunc import start as st
 READY = True
 import DATAS as dat
-
+tex = ""
 
 def timing():
     global START_TIME
@@ -22,7 +22,9 @@ FPS = 60
 WIDTHH = 480*2.5
 WIDTH = 480
 HEIGHT = 640
+HEIGHTT = HEIGHT + (HEIGHT // 8)
 FRAME = 0
+SHAG = 0
 
 
 def set_image_size(img, height=-1, width=-1):
@@ -40,10 +42,11 @@ def set_image_size(img, height=-1, width=-1):
 
 
 def CHECK():
-    global DATA, START_TIME
+    global DATA, START_TIME, SHAG
     # print(DATA)
     for i in range(len(DATA)):
         if DATA[i]['start'] <= timing() <= DATA[i]['end']:
+            SHAG = i
             DATA[i]['word'] = (DATA[i]['word']).lower()
             return DATA[i]
     # if DATA == []:
@@ -70,7 +73,9 @@ def WHAT_CHAR(ch):
 
 
 
-def start(data, stat=''):
+def start(data, stat='', tex=''):
+    tex = tex.split()
+
     global FPS, WIDTH, HEIGHT, FRAME, START_TIME, DATA, READY
     FRAME = 0
     DATA = data
@@ -78,7 +83,7 @@ def start(data, stat=''):
 
     if not dat.window:
         pg.init()
-        window = pg.display.set_mode((WIDTHH, HEIGHT))
+        window = pg.display.set_mode((WIDTHH, HEIGHT + (HEIGHT // 8)))
         dat.window = window
     else:
         window = dat.window
@@ -87,6 +92,10 @@ def start(data, stat=''):
         dat.clock = clock
     else:
         clock = dat.clock
+
+    logo = pg.image.load('datas/backgrounds/ico.ico')  # directory of logo
+    pg.display.set_icon(logo)
+    pg.display.set_caption("HI, PETR")
 
 
     STATUS = True
@@ -105,7 +114,8 @@ def start(data, stat=''):
         ran.append(float(choice([randrange(0, int(timess*100)), randrange(0, int(timess*100))])) / 100.0)
     # print(ran)
 
-
+    pg.font.init()
+    my_font = pg.font.SysFont('Comic Sans MS', 30)
 
     # quit()
     while play:
@@ -138,7 +148,7 @@ def start(data, stat=''):
         # if CHAR != 'ending' and CHAR != 'end':
         LAST_CHAR = CHAR
         CHAR = CHECK()
-        # print("123---"+str(CHAR))
+
         if str(CHAR).strip() != 'end':
             CHAR = WHAT_CHAR(CHAR)
 
@@ -206,12 +216,49 @@ def start(data, stat=''):
             # print("'"+stat+'"')
 
         img = pg.image.load('datas/backgrounds/'+imgi+'.jpg')
-        img = set_image_size(img, height=HEIGHT - ((HEIGHT // 18)*2))
+        img = set_image_size(img, height=HEIGHTT - ((HEIGHTT // 18)*2))
         # print(WIDTHH - int(img.get_width()), 0)
-        window.blit(img, (WIDTHH - int(img.get_width()) - (HEIGHT // 18), HEIGHT // 18))
+        window.blit(img, (WIDTHH - int(img.get_width()) - (HEIGHTT // 18), HEIGHTT // 18))
 
 
+        # text_surface = my_font.render(textion, False, (0, 0, 0))
+        # # print(text_surface.get_width())
+        # window.blit(text_surface, ((WIDTH // 2) - (text_surface.get_width() // 2), HEIGHT))
 
+        # SUBBING
+        # print(DATA)
+        textion = []
+        KOL_WORDS_IN_SUB = 4
+        # if tex != []:
+        #     KOL_WORDS_IN_SUB = 7
+        #     print(tex)
+        #     for i in range((SHAG // KOL_WORDS_IN_SUB * KOL_WORDS_IN_SUB), (SHAG // KOL_WORDS_IN_SUB * KOL_WORDS_IN_SUB) + KOL_WORDS_IN_SUB + 1):
+        #         textion.append(tex[i])
+        # else:
+        for i in range((SHAG // KOL_WORDS_IN_SUB * KOL_WORDS_IN_SUB),
+                       (SHAG // KOL_WORDS_IN_SUB * KOL_WORDS_IN_SUB) + KOL_WORDS_IN_SUB):
+            try:
+                CH = DATA[i]['word']
+                CH = str(CH).strip().replace('_', '').replace('-', '')
+                textion.append(CH)
+            except:
+                pass
+        textion.append('')
+        textion = ' '.join(textion)
+
+        text_surface = my_font.render(textion, False, (0, 0, 0))
+        # print(text_surface.get_width())
+        window.blit(text_surface, ((WIDTH // 2) - (text_surface.get_width() // 2), HEIGHT))
+
+        # SUBBING
+        # try:
+        #
+        #     if str(CHAR['word']).strip() == '_' or str(CHAR['word']).strip() == '-' or str(CHAR['word']).strip() == ' ' or str(CHAR['word']).strip() == '':
+        #         textion = textion
+        #     else:
+        #         textion = str(CHAR['word']).strip()
+        # except:
+        #     pass
 
 
 
